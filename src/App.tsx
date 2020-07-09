@@ -1,18 +1,40 @@
-import React from "react";
+import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
+import styled from "styled-components";
 
 import LoginPage from "./pages/LoginPage";
 import Wrapper from "./components/Wrapper/Wrapper";
-import ErrorPage from "./pages/ErrorPage";
+import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
+
+const HomePage = lazy(() => import("./pages/HomePage"));
+const RegisterPage = lazy(() => import("./pages/RegisterPage"));
+const ErrorPage = lazy(() => import("./pages/ErrorPage"));
+
+const LoadingDiv = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
 
 function App() {
   return (
     <BrowserRouter>
       <Wrapper>
-        <Switch>
-          <Route exact path="/" component={LoginPage} />
-          <Route component={ErrorPage} />
-        </Switch>
+        <Suspense
+          fallback={
+            <LoadingDiv>
+              <LoadingSpinner />
+            </LoadingDiv>
+          }
+        >
+          <Switch>
+            <Route exact path="/" component={LoginPage} />
+            <Route exact path="/register" compoenent={RegisterPage} />
+            <Route exact path="/home" component={HomePage} />
+            <Route component={ErrorPage} />
+          </Switch>
+        </Suspense>
       </Wrapper>
     </BrowserRouter>
   );

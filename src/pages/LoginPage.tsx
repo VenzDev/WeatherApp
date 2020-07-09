@@ -1,9 +1,7 @@
 import React from "react";
 import LoginForm from "../components/LoginForm/LoginForm";
 
-export interface LoginPageProps {}
-
-const LoginPage: React.SFC<LoginPageProps> = () => {
+const LoginPage: React.SFC = () => {
   return (
     <div>
       <LoginForm />
