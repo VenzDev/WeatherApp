@@ -3,8 +3,8 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 
 import LoginPage from "./pages/LoginPage";
-import Wrapper from "./components/Wrapper/Wrapper";
-import LoadingSpinner from "./components/LoadingSpinner/LoadingSpinner";
+import Wrapper from "./components/Wrapper";
+import LoadingSpinner from "./components/LoadingSpinner";
 
 const HomePage = lazy(() => import("./pages/HomePage"));
 const RegisterPage = lazy(() => import("./pages/RegisterPage"));
@@ -30,7 +30,7 @@ function App() {
         >
           <Switch>
             <Route exact path="/" component={LoginPage} />
-            <Route exact path="/register" compoenent={RegisterPage} />
+            <Route exact path="/register" component={RegisterPage} />
             <Route exact path="/home" component={HomePage} />
             <Route component={ErrorPage} />
           </Switch>

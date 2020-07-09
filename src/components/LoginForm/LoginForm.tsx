@@ -1,29 +1,51 @@
 import React from "react";
-import FormImage from "./FormImage";
-import Form from "./Form";
+import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { Button, Input } from "../FormContainer/Form.styled";
 
-export interface LoginFormProps {}
+const RegisterLink = styled.div`
+  margin: 2rem;
+  display: block;
+  text-align: center;
+  color: blue;
+  cursor: pointer;
+  transition: 0.1s;
 
-const LoginForm: React.SFC<LoginFormProps> = () => {
+  &:hover {
+    font-weight: 500;
+  }
+  & a {
+    text-decoration: none;
+  }
+`;
+
+const Form: React.SFC = () => {
   return (
-    <div style={{ height: "100vh" }} className="container">
-      <div
-        style={{ height: "100%" }}
-        className="row justify-content-center align-items-center"
-      >
-        <div className="col-md-9 col-lg-12 col-xl-10">
-          <div className="card shadow-lg o-hidden border-0 my-5">
-            <div className="card-body p-0">
-              <div className="row">
-                <FormImage />
-                <Form />
-              </div>
-            </div>
+    <div className="col-lg-6">
+      <div className="p-lg-5 p-3">
+        <h3 className="text-center py-2">Weather App</h3>
+        <h4 className="text-center py-3">Login</h4>
+        <form>
+          <div className="form-group">
+            <Input className="form-control" type="text" placeholder="Login" />
           </div>
-        </div>
+          <div className="form-group">
+            <Input
+              className="form-control"
+              type="password"
+              placeholder="Password"
+            />
+            <Button className="btn btn-primary btn-block text-white">
+              Login
+            </Button>
+          </div>
+        </form>
+        <RegisterLink>
+          <Link to="/register">Create An Account!</Link>
+        </RegisterLink>
       </div>
     </div>
   );
 };
 
-export default LoginForm;
+export default Form;

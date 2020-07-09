@@ -1,10 +1,13 @@
 import React from "react";
-import LoginForm from "../components/LoginForm/LoginForm";
+import LoginForm from "../components/LoginForm";
+import FormContainer from "../components/FormContainer";
 
 const LoginPage: React.SFC = () => {
   return (
     <div>
-      <LoginForm />
+      <FormContainer>
+        <LoginForm />
+      </FormContainer>
     </div>
   );
 };

@@ -1,7 +1,13 @@
 import React from "react";
+import FormContainer from "../components/FormContainer";
+import RegisterForm from "../components/RegisterForm";
 
 const RegisterPage: React.SFC = () => {
-  return <div>RegisterPage</div>;
+  return (
+    <FormContainer>
+      <RegisterForm />
+    </FormContainer>
+  );
 };
 
 export default RegisterPage;

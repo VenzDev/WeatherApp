@@ -1,37 +1,19 @@
 import React from "react";
-import styled from "styled-components";
-export interface FormProps {}
+import { Button, Input } from "../FormContainer/Form.styled";
 
-const Input = styled.input`
-  border-radius: 10rem;
-  padding: 1.5rem 1rem;
-  margin: 1.5rem 0;
-`;
-
-const Button = styled.button`
-  border-radius: 10rem;
-`;
-
-const RegisterLink = styled.a`
-  margin: 2rem;
-  display: block;
-  text-align: center;
-  color: blue;
-  cursor: pointer;
-  transition: 0.1s;
-
-  &:hover {
-    font-weight: 500;
-  }
-`;
-
-const Form: React.SFC<FormProps> = () => {
+const RegisterForm: React.SFC = () => {
   return (
     <div className="col-lg-6">
       <div className="p-lg-5 p-3">
         <h3 className="text-center py-2">Weather App</h3>
-        <h4 className="text-center py-3">Login</h4>
+        <h4 className="text-center py-3">Register</h4>
         <form>
+          <div className="form-group">
+            <Input className="form-control" type="text" placeholder="Name" />
+          </div>
+          <div className="form-group">
+            <Input className="form-control" type="text" placeholder="Surname" />
+          </div>
           <div className="form-group">
             <Input className="form-control" type="text" placeholder="Login" />
           </div>
@@ -42,14 +24,13 @@ const Form: React.SFC<FormProps> = () => {
               placeholder="Password"
             />
             <Button className="btn btn-primary btn-block text-white">
-              Login
+              Register
             </Button>
           </div>
         </form>
-        <RegisterLink>Create An Account!</RegisterLink>
       </div>
     </div>
   );
 };
 
-export default Form;
+export default RegisterForm;
