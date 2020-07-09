@@ -18,6 +18,11 @@ const RegisterLink = styled.a`
   text-align: center;
   color: blue;
   cursor: pointer;
+  transition: 0.1s;
+
+  &:hover {
+    font-weight: 500;
+  }
 `;
 
 const Form: React.SFC<FormProps> = () => {
