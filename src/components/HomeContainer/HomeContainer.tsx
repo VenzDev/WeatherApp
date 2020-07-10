@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import RightPanel from "./RightPanel";
 
 const Container = styled.div`
   position: absolute;
@@ -13,7 +14,7 @@ const Container = styled.div`
   border-radius: 6px;
 `;
 
-const RightPanel = styled.div`
+const RightPanelContainer = styled.div`
   background-color: #110752;
 `;
 
@@ -25,7 +26,9 @@ const HomeContainer: React.SFC<HomeContainerProps> = () => {
       <div style={{ height: "100%" }} className="container-fluid">
         <div style={{ height: "100%" }} className="row">
           <div className="col-xl-8"></div>
-          <RightPanel className="col-xl-4"></RightPanel>
+          <RightPanelContainer className="col-xl-4">
+            <RightPanel />
+          </RightPanelContainer>
         </div>
       </div>
     </Container>

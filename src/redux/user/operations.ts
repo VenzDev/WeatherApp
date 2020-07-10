@@ -32,5 +32,8 @@ const login = (data: loginData) => async (dispatch: any) => {
     if (err) return dispatch(actions.loginFailed("Invalid Credentials"));
   }
 };
+const logout = () => (dispatch: any) => {
+  dispatch(actions.logout());
+};
 
-export default { login };
+export default { login, logout };
