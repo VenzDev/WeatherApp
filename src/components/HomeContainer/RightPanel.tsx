@@ -41,7 +41,7 @@ const RightPanel: React.SFC<RightPanelProps> = ({ history }) => {
       <div className="row p-4">
         <div
           style={{
-            minHeight: "400px",
+            minHeight: "350px",
             width: "100%",
           }}
           className="card shadow bg-info"
