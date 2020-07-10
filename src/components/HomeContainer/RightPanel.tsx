@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import avatar from "../../images/avatar.png";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { user } from "../../redux/user";
+import styled from "styled-components";
 
 export interface RightPanelProps extends RouteComponentProps<any> {}
 
@@ -15,11 +16,16 @@ const RightPanel: React.SFC<RightPanelProps> = ({ history }) => {
     dispatch(user.logout());
     history.push("/");
   };
+
+  const RightPanelContainer = styled.div`
+    background-color: #110752;
+  `;
+
   return (
-    <>
+    <RightPanelContainer className="col-xl-4">
       <div
         style={{ color: "white" }}
-        className="row align-items-center justify-content-around p-4 my-4"
+        className="row  align-items-center justify-content-around p-4 my-4"
       >
         <button onClick={handleLogout} className="btn btn-primary mr-5">
           Logout
@@ -32,7 +38,16 @@ const RightPanel: React.SFC<RightPanelProps> = ({ history }) => {
       <div className="row p-4 justify-content-center">
         <h2 className="text-white">Today is {date.toLocaleDateString()}</h2>
       </div>
-    </>
+      <div className="row p-4">
+        <div
+          style={{
+            minHeight: "400px",
+            width: "100%",
+          }}
+          className="card shadow bg-info"
+        ></div>
+      </div>
+    </RightPanelContainer>
   );
 };
 
