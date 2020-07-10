@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
+import { UserRoute, GuestRoute } from "./components/Routes";
 
 import LoginPage from "./pages/LoginPage";
 import Wrapper from "./components/Wrapper";
@@ -29,9 +30,9 @@ function App() {
           }
         >
           <Switch>
-            <Route exact path="/" component={LoginPage} />
-            <Route exact path="/register" component={RegisterPage} />
-            <Route exact path="/home" component={HomePage} />
+            <GuestRoute exact path="/" component={LoginPage} />
+            <GuestRoute exact path="/register" component={RegisterPage} />
+            <UserRoute exact path="/home" component={HomePage} />
             <Route component={ErrorPage} />
           </Switch>
         </Suspense>
