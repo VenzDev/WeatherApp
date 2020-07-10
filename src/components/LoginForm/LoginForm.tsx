@@ -1,22 +1,43 @@
-import React, { useState, FormEvent } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, FormEvent, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { withRouter } from "react-router-dom";
+import { user } from "../../redux/user";
+import { Link, RouteComponentProps } from "react-router-dom";
 import { Button, Input, StyledLink } from "../FormContainer/Form.styled";
-import { login as loginMethod } from "../../api/apiCalls";
 
-const Form: React.SFC = () => {
-  const [login, setLogin] = useState("");
+interface loginProps extends RouteComponentProps<any> {}
+
+const Form: React.SFC<loginProps> = ({ history }) => {
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const dispatch = useDispatch();
+  const userData = useSelector((state: any) => state.userReducer);
 
-  const handleLogin = (e: FormEvent<HTMLInputElement>) =>
-    setLogin(e.currentTarget.value);
+  useEffect(() => {
+    if (Object.keys(userData.user).length > 0) history.push("/home");
+    if (userData.errorMessage.length !== 0) {
+      setEmail("");
+      setPassword("");
+    }
+  }, [userData, history]);
+
+  const handleEmail = (e: FormEvent<HTMLInputElement>) =>
+    setEmail(e.currentTarget.value);
 
   const handlePassword = (e: FormEvent<HTMLInputElement>) =>
     setPassword(e.currentTarget.value);
 
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const data = await loginMethod({ login, password });
-    console.log(data);
+    dispatch(user.login({ email, password }));
+  };
+
+  const LoginButton: React.SFC = ({ children }) => {
+    return (
+      <Button className="btn btn-primary btn-block text-white">
+        {children}
+      </Button>
+    );
   };
 
   return (
@@ -27,24 +48,33 @@ const Form: React.SFC = () => {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <Input
-              onChange={handleLogin}
+              onChange={handleEmail}
+              value={email}
               className="form-control"
-              type="text"
-              placeholder="Login"
+              type="email"
+              placeholder="Email"
             />
           </div>
           <div className="form-group">
             <Input
               onChange={handlePassword}
+              value={password}
               className="form-control"
               type="password"
               placeholder="Password"
             />
-            <Button className="btn btn-primary btn-block text-white">
-              Login
-            </Button>
+            {!userData.isLoading ? (
+              <LoginButton>Login</LoginButton>
+            ) : (
+              <LoginButton>
+                <div className="spinner-border" role="status">
+                  <span className="sr-only">Loading...</span>
+                </div>
+              </LoginButton>
+            )}
           </div>
         </form>
+        <h5 className="text-center text-danger">{userData.errorMessage}</h5>
         <StyledLink margin="lg">
           <Link to="/register">Create An Account!</Link>
         </StyledLink>
@@ -53,4 +83,4 @@ const Form: React.SFC = () => {
   );
 };
 
-export default Form;
+export default withRouter(Form);

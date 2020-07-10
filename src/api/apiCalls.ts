@@ -4,12 +4,12 @@ import { userUri } from "./apiEndpoints";
 interface registerData {
   name: String;
   surname: String;
-  login: String;
+  email: String;
   password: String;
 }
 
 interface loginData {
-  login: String;
+  email: String;
   password: String;
 }
 
