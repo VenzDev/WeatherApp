@@ -13,10 +13,23 @@ const Container = styled.div`
   border-radius: 6px;
 `;
 
+const RightPanel = styled.div`
+  background-color: #110752;
+`;
+
 export interface HomeContainerProps {}
 
 const HomeContainer: React.SFC<HomeContainerProps> = () => {
-  return <Container>HelloWorld</Container>;
+  return (
+    <Container>
+      <div style={{ height: "100%" }} className="container-fluid">
+        <div style={{ height: "100%" }} className="row">
+          <div className="col-xl-8"></div>
+          <RightPanel className="col-xl-4"></RightPanel>
+        </div>
+      </div>
+    </Container>
+  );
 };
 
 export default HomeContainer;
