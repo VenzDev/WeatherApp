@@ -16,8 +16,8 @@ export interface HomeContainerProps {}
 const HomeContainer: React.SFC<HomeContainerProps> = () => {
   return (
     <Container>
-      <div style={{ height: "100%" }} className="container-fluid">
-        <div style={{ height: "100%" }} className="row">
+      <div className="container-fluid">
+        <div style={{ minHeight: "90vh" }} className="row">
           <LeftPanel />
           <RightPanel />
         </div>

@@ -4,7 +4,6 @@ import { withRouter } from "react-router-dom";
 import { user } from "../../redux/user";
 import { Link, RouteComponentProps } from "react-router-dom";
 import { Button, Input, StyledLink } from "../FormContainer/Form.styled";
-import showToast from "../../utils/showToast";
 
 interface loginProps extends RouteComponentProps<any> {}
 
