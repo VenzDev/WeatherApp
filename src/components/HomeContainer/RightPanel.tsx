@@ -10,7 +10,6 @@ export interface RightPanelProps extends RouteComponentProps<any> {}
 const RightPanel: React.SFC<RightPanelProps> = ({ history }) => {
   const userData = useSelector((state: any) => state.userReducer);
   const dispatch = useDispatch();
-  console.log(userData);
   const date = new Date();
   const handleLogout = () => {
     dispatch(user.logout());

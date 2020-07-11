@@ -12,7 +12,7 @@ const Div = styled.div`
   }
 `;
 const Img = styled.img`
-  width: 100%;
+  width: 80%;
 `;
 
 const AddCityCard: React.SFC<AddCityCardProps> = () => {
@@ -21,7 +21,7 @@ const AddCityCard: React.SFC<AddCityCardProps> = () => {
       <div className="card shadow">
         <div style={{ height: "170px" }} className="card-body">
           <Img src={plus} alt="plus" />
-          <p className="py-2">Add City</p>
+          <p className="py-2 text-center">Add City</p>
         </div>
       </div>
     </Div>

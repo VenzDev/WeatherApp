@@ -3,7 +3,7 @@ import FormImage from "./FormImage";
 
 const FormContainer: React.SFC = ({ children }) => {
   return (
-    <div style={{ height: "100vh" }} className="container">
+    <div style={{ height: "90vh" }} className="container">
       <div
         style={{ height: "100%" }}
         className="row justify-content-center align-items-center"

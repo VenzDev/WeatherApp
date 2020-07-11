@@ -1,5 +1,6 @@
 import axios from "axios";
-import { userUri } from "./apiEndpoints";
+import { userUri, weatherApiUri } from "./apiEndpoints";
+import { weatherApiKey } from "./apiKeys";
 
 interface registerData {
   name: String;
@@ -14,14 +15,19 @@ interface loginData {
 }
 
 const register = async (data: registerData) => {
-  const fetchedData = await axios.post(userUri, {
-    ...data,
-    favCities: ["noCity"],
-  });
+  const fetchedData = await axios.post(userUri, data);
   return fetchedData.data;
 };
 const login = async (data: loginData) => {
   const fetchedData = await axios.get(userUri);
   return fetchedData.data;
 };
-export { register, login };
+
+const getCity = async (id: String) => {
+  const fetchedData = await axios.get(
+    weatherApiUri + `?id=${id}&appid=${weatherApiKey}`
+  );
+  return fetchedData.data;
+};
+
+export { register, login, getCity };
