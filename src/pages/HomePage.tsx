@@ -2,13 +2,14 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import HomeContainer from "../components/HomeContainer";
 import { cities } from "../redux/cities";
+import showToast from "../utils/showToast";
 
 const HomePage: React.SFC = () => {
   const dispatch = useDispatch();
   const ids: Array<String> = ["2643743", "759734"];
   useEffect(() => {
+    showToast("Login Success");
     ids.forEach((id) => dispatch(cities.getCityMethod(id)));
-
     const interval = setInterval(() => {
       dispatch(cities.clearData());
       ids.forEach((id) => dispatch(cities.getCityMethod(id)));

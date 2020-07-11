@@ -2,6 +2,7 @@ import React, { Suspense, lazy } from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import { UserRoute, GuestRoute } from "./components/Routes";
+import { ToastContainer } from "react-toastify";
 
 import LoginPage from "./pages/LoginPage";
 import Wrapper from "./components/Wrapper";
@@ -22,6 +23,8 @@ function App() {
   return (
     <BrowserRouter>
       <Wrapper>
+        <ToastContainer />
+
         <Suspense
           fallback={
             <LoadingDiv>

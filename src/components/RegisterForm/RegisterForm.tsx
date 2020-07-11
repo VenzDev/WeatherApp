@@ -3,6 +3,7 @@ import { Button, Input, StyledLink } from "../FormContainer/Form.styled";
 import { Link, RouteComponentProps } from "react-router-dom";
 import { register } from "../../api/apiCalls";
 import { withRouter } from "react-router-dom";
+import showToast from "../../utils/showToast";
 
 interface RegisterProps extends RouteComponentProps<any> {}
 
@@ -36,6 +37,7 @@ const RegisterForm: React.SFC<RegisterProps> = ({ history }) => {
     register({ name, surname, email, password }).then((res) => {
       setLoading(false);
       if (res.name) {
+        showToast("Register Successful");
         history.push("/");
       } else {
         setErrorMessage("Something went wrong");

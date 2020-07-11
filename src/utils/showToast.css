@@ -1,0 +1,7 @@
+.toast {
+  background: white !important;
+  color: blue;
+  text-align: center;
+  font-size: 2rem;
+  transition: none !important;
+}
