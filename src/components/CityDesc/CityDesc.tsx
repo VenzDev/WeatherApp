@@ -12,10 +12,9 @@ const CityDesc: React.SFC<CityDescProps> = () => {
   const { user } = useSelector((state: any) => state.userReducer);
   const favCities = user.favCities;
   const isCity = Object.keys(city).length > 0;
-  isCity && console.log(city.weather[0].icon);
 
-  //Conver to km/h, default wind is in Beaufort scale
-  const windSpeed = (speed: number) => 1.852 * speed;
+  //Convert to km/h from m/sec
+  const windSpeed = (speed: number) => 3.6 * speed;
   const style = "text-white text-center";
 
   const handlexD = () => {
@@ -36,8 +35,11 @@ const CityDesc: React.SFC<CityDescProps> = () => {
         Wind: {windSpeed(city.wind.speed).toFixed(2)} km/h
       </h5>
       <h5 className={style}>Humidity: {city.main.humidity}%</h5>
-      <button onClick={handlexD} className="p-2 my-5 btn btn-primary btn-block">
-        Show Chart
+      <button onClick={handlexD} className="p-1 my-4 btn btn-primary btn-block">
+        Show Temperature Chart
+      </button>
+      <button onClick={handlexD} className="p-1 my-4 btn btn-primary btn-block">
+        Show Pressure Chart
       </button>
     </div>
   ) : null;

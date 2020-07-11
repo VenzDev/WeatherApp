@@ -24,7 +24,6 @@ function App() {
     <BrowserRouter>
       <Wrapper>
         <ToastContainer />
-
         <Suspense
           fallback={
             <LoadingDiv>

@@ -30,6 +30,13 @@ const getCity = async (id: String) => {
   return fetchedData.data;
 };
 
+const getCitiesByName = async (name: String) => {
+  const fetchedData = await axios.get(
+    `https://vue-testhere.firebaseio.com/data.json?orderBy=%22name%22&startAt=%22${name}%22&endAt=%22${name}\\uf8ff%22&limitToFirst=6`
+  );
+  return fetchedData.data;
+};
+
 const updateUserCities = async (id: String, citiesArray: Array<String>) => {
   const fetchedData = await axios.patch(updateUserUri + id + ".json", {
     favCities: citiesArray,
@@ -37,4 +44,4 @@ const updateUserCities = async (id: String, citiesArray: Array<String>) => {
   return fetchedData.data.favCities;
 };
 
-export { register, login, getCity, updateUserCities };
+export { register, login, getCity, updateUserCities, getCitiesByName };
