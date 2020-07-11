@@ -1,4 +1,4 @@
-import { login as loginMethod } from "../../api/apiCalls";
+import { login as loginMethod, updateUserCities } from "../../api/apiCalls";
 import actions from "./actions";
 
 interface loginData {
@@ -38,4 +38,16 @@ const logout = () => (dispatch: any) => {
   dispatch(actions.logout());
 };
 
-export default { login, logout };
+const updateCities = (id: String, citiesArray: Array<String>) => async (
+  dispatch: any
+) => {
+  try {
+    dispatch(actions.updatePending());
+    const fetchedArray = await updateUserCities(id, citiesArray);
+    if (fetchedArray) return dispatch(actions.updateSuccess(fetchedArray));
+  } catch (err) {
+    if (err) return dispatch(actions.updateFailed());
+  }
+};
+
+export default { login, logout, updateCities };

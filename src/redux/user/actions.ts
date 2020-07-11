@@ -19,9 +19,21 @@ const loginFailed = (errorMessage: String) => ({
 
 const logout = () => ({ type: types.LOGOUT, payload: false });
 
+const updatePending = () => ({ type: types.UPDATE_PENDING, payload: true });
+
+const updateSuccess = (citiesArray: Array<String>) => ({
+  type: types.UPDATE_SUCCESS,
+  payload: citiesArray,
+});
+
+const updateFailed = () => ({ type: types.UPDATE_FAILED, payload: false });
+
 export default {
   loginPending,
   loginSuccess,
   loginFailed,
   logout,
+  updatePending,
+  updateSuccess,
+  updateFailed,
 };

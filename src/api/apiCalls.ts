@@ -1,5 +1,5 @@
 import axios from "axios";
-import { userUri, weatherApiUri } from "./apiEndpoints";
+import { userUri, weatherApiUri, updateUserUri } from "./apiEndpoints";
 import { weatherApiKey } from "./apiKeys";
 
 interface registerData {
@@ -30,4 +30,11 @@ const getCity = async (id: String) => {
   return fetchedData.data;
 };
 
-export { register, login, getCity };
+const updateUserCities = async (id: String, citiesArray: Array<String>) => {
+  const fetchedData = await axios.patch(updateUserUri + id + ".json", {
+    favCities: citiesArray,
+  });
+  return fetchedData.data.favCities;
+};
+
+export { register, login, getCity, updateUserCities };
