@@ -4,6 +4,7 @@ import avatar from "../../images/avatar.png";
 import { withRouter, RouteComponentProps } from "react-router-dom";
 import { user } from "../../redux/user";
 import styled from "styled-components";
+import CityDesc from "../CityDesc";
 
 export interface RightPanelProps extends RouteComponentProps<any> {}
 
@@ -37,14 +38,8 @@ const RightPanel: React.SFC<RightPanelProps> = ({ history }) => {
       <div className="row p-4 justify-content-center">
         <h2 className="text-white">Today is {date.toLocaleDateString()}</h2>
       </div>
-      <div className="row p-4">
-        <div
-          style={{
-            minHeight: "350px",
-            width: "100%",
-          }}
-          className="card shadow bg-info"
-        ></div>
+      <div className="row p-4 justify-content-center">
+        <CityDesc />
       </div>
     </RightPanelContainer>
   );

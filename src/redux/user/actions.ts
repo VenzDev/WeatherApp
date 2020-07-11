@@ -4,6 +4,7 @@ interface user {
   email: String;
   password: String;
   favCites: Array<String>;
+  id: String;
 }
 
 const loginPending = () => ({ type: types.LOGIN_PENDING, payload: true });

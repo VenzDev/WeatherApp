@@ -16,12 +16,14 @@ const login = (data: loginData) => async (dispatch: any) => {
           users[key].email === data.email &&
           users[key].password === data.password
         ) {
+          console.log(key);
           if (!users[key].hasOwnProperty("favCities"))
             //Firebase hack
             return dispatch(
-              actions.loginSuccess({ ...users[key], favCities: [] })
+              actions.loginSuccess({ ...users[key], favCities: [], id: key })
             );
-          else return dispatch(actions.loginSuccess(users[key]));
+          else
+            return dispatch(actions.loginSuccess({ ...users[key], id: key }));
         }
       }
       return dispatch(actions.loginFailed("Invalid Credentials"));
