@@ -17,7 +17,10 @@ const AddCityModal: React.SFC<AddCityModalProps> = ({ toggleModal }) => {
 
   const handleInput = async (e: any) => {
     let value = e.target.value;
-    if (value.length > 0) value = value[0].toUpperCase() + value.slice(1);
+    if (value.length > 0) {
+      value = value[0].toUpperCase() + value.slice(1);
+      value = escapeDiacritics(value);
+    }
 
     if (value.length >= 4) {
       const data = await getCitiesByName(value);
@@ -80,5 +83,27 @@ const AddCityModal: React.SFC<AddCityModalProps> = ({ toggleModal }) => {
     </Modal>
   );
 };
+
+function escapeDiacritics(value: string) {
+  return value
+    .replace(/ą/g, "a")
+    .replace(/Ą/g, "A")
+    .replace(/ć/g, "c")
+    .replace(/Ć/g, "C")
+    .replace(/ę/g, "e")
+    .replace(/Ę/g, "E")
+    .replace(/ł/g, "l")
+    .replace(/Ł/g, "L")
+    .replace(/ń/g, "n")
+    .replace(/Ń/g, "N")
+    .replace(/ó/g, "o")
+    .replace(/Ó/g, "O")
+    .replace(/ś/g, "s")
+    .replace(/Ś/g, "S")
+    .replace(/ż/g, "z")
+    .replace(/Ż/g, "Z")
+    .replace(/ź/g, "z")
+    .replace(/Ź/g, "Z");
+}
 
 export default AddCityModal;
