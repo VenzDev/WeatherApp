@@ -15,13 +15,10 @@ const HumidityChart: React.SFC<any> = ({ preparedData }) => {
   const data: Array<Object> = preparedData;
   return (
     <ResponsiveContainer width="90%" height="80%" className="chart">
-      <LineChart
-        data={data}
-        margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
-      >
-        <XAxis dataKey="name" />
+      <LineChart data={data} margin={{ right: 40, bottom: 5 }}>
+        <XAxis minTickGap={30} dataKey="name" />
         <YAxis type="number" domain={[0, 100]} />
-        <CartesianGrid strokeDasharray="3 3" />
+        <CartesianGrid strokeDasharray="10 10" />
         <Tooltip />
         <Legend />
         <Line
