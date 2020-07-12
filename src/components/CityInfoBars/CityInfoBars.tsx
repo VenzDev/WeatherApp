@@ -2,6 +2,8 @@ import React from "react";
 import { useSelector } from "react-redux";
 import WeatherBar from "../WeatherBar";
 import PressureBar from "../PressureBar";
+import { AppState } from "../../configureStore";
+import { SelectedCityState } from "../../redux/cities/citiesState";
 
 export interface InfoBarProps {
   temp: number;
@@ -19,7 +21,9 @@ const InfoBar: React.SFC<InfoBarProps> = ({ temp, name }) => {
 };
 
 const CityBarsInfo: React.SFC = () => {
-  const { city } = useSelector((state: any) => state.selectedCityReducer);
+  const { city } = useSelector(
+    (state: AppState): SelectedCityState => state.selectedCityReducer
+  );
   const isCitySelected = city.id !== null;
   return isCitySelected ? (
     <>

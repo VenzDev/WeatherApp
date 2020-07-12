@@ -24,6 +24,14 @@ const initSelectedCityReducer: SelectedCityState = {
     },
     main: {
       humidity: null,
+      temp: 0,
+      temp_max: 0,
+      temp_min: 0,
+      pressure: 0,
+      feels_like: 0,
+    },
+    sys: {
+      country: "",
     },
   },
 };

@@ -7,6 +7,14 @@ export interface City {
   };
   main: {
     humidity: number | null;
+    temp: number;
+    temp_min: number;
+    temp_max: number;
+    feels_like: number;
+    pressure: number;
+  };
+  sys: {
+    country: string;
   };
 }
 
