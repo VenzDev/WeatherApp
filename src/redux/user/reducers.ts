@@ -1,36 +1,53 @@
-import types from "./types";
+import {
+  LOGIN_FAILED,
+  LOGIN_SUCCESS,
+  LOGIN_PENDING,
+  LOGOUT,
+  UPDATE_SUCCESS,
+  UPDATE_FAILED,
+  UPDATE_PENDING,
+  UserActionTypes,
+} from "./types";
+import { UserState } from "./userState";
 
-const initState = {
+const initState: UserState = {
   isLoading: false,
-  user: {},
+  user: {
+    email: "",
+    favCities: [],
+    name: "",
+    password: "",
+    surname: "",
+    id: "",
+  },
   errorMessage: "",
 };
 
-const userReducer = (state = initState, action: any) => {
+const userReducer = (state = initState, action: UserActionTypes) => {
   switch (action.type) {
-    case types.LOGIN_PENDING:
-      return { ...state, isLoading: true };
-    case types.LOGIN_SUCCESS:
-      return { ...state, user: action.payload, isLoading: false };
-    case types.LOGIN_FAILED:
+    case LOGIN_PENDING:
+      return { ...state, isLoading: action.isLoading };
+    case LOGIN_SUCCESS:
+      return { ...state, user: action.user, isLoading: false };
+    case LOGIN_FAILED:
       return {
         ...state,
         user: {},
         isLoading: false,
-        errorMessage: action.payload,
+        errorMessage: action.errorMessage,
       };
-    case types.LOGOUT:
+    case LOGOUT:
       return { isLoading: false, user: {}, errorMessage: "" };
-    case types.UPDATE_PENDING:
+    case UPDATE_PENDING:
       return { ...state, isLoading: true };
-    case types.UPDATE_SUCCESS:
+    case UPDATE_SUCCESS:
       return {
         ...state,
-        user: { ...state.user, favCities: action.payload },
+        user: { ...state.user, favCities: action.favCities },
         isLoading: false,
         errorMessage: "",
       };
-    case types.UPDATE_FAILED:
+    case UPDATE_FAILED:
       return { ...state, isLoading: false };
     default:
       return state;

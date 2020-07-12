@@ -4,12 +4,11 @@ import styled from "styled-components";
 import { useDispatch, useSelector } from "react-redux";
 import { cities } from "../../redux/cities";
 import { user } from "../../redux/user";
+import { AppState } from "../../configureStore";
+import { UserState } from "../../redux/user/userState";
 
-export interface CityCardProps {
-  city: {
-    id: number;
-    name: String;
-  };
+interface CityCardProps {
+  city: any;
 }
 
 const Div = styled.div`
@@ -26,7 +25,9 @@ const Button = styled.button`
 `;
 
 const CityCard: React.SFC<CityCardProps> = ({ city }) => {
-  const userData = useSelector((state: any) => state.userReducer);
+  const userData = useSelector(
+    (state: AppState): UserState => state.userReducer
+  );
   const dispatch = useDispatch();
   const handleSelectCity = () => dispatch(cities.selectCity(city));
   const handleDelete = () => {

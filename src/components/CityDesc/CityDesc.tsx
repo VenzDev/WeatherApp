@@ -7,6 +7,8 @@ import Chart from "./Chart";
 import LoadingSpinner from "../LoadingSpinner";
 import { getCityDataChart } from "../../api/apiCalls";
 import HumidityChart from "./HumidityChart";
+import { AppState } from "../../configureStore";
+import { SelectedCityState } from "../../redux/cities/citiesState";
 export interface CityDescProps {}
 
 const CityDesc: React.SFC<CityDescProps> = () => {
@@ -14,15 +16,21 @@ const CityDesc: React.SFC<CityDescProps> = () => {
   const [isTempChart, setTempChart] = useState(false);
   const [isLoading, setLoading] = useState(false);
   const [data, setData] = useState({});
-  const { city } = useSelector((state: any) => state.selectedCityReducer);
-  const isCity = Object.keys(city).length > 0;
+  const { city } = useSelector(
+    (state: AppState): SelectedCityState => state.selectedCityReducer
+  );
+  const isCity = city.id !== null;
 
   //Convert to km/h from m/sec
-  const windSpeed = (speed: number) => 3.6 * speed;
+  const windSpeed = (speed: number | null) => {
+    if (speed === null) {
+      return 0;
+    } else return 3.6 * speed;
+  };
   const style = "text-white text-center";
 
   const toggleHumidityChart = async () => {
-    if (isHumidityChart) setHumidityChart(!isHumidityChart);
+    if (isHumidityChart || city.id === null) setHumidityChart(!isHumidityChart);
     else {
       setHumidityChart(!isHumidityChart);
       setLoading(true);
@@ -32,11 +40,14 @@ const CityDesc: React.SFC<CityDescProps> = () => {
     }
   };
   const toggleTempChart = async () => {
-    setTempChart(!isTempChart);
-    setLoading(true);
-    const fetchedData = await getCityDataChart(city.id.toString());
-    setData(prepareTempData(fetchedData));
-    setLoading(false);
+    if (isTempChart || city.id === null) setTempChart(!isTempChart);
+    else {
+      setTempChart(!isTempChart);
+      setLoading(true);
+      const fetchedData = await getCityDataChart(city.id.toString());
+      setData(prepareTempData(fetchedData));
+      setLoading(false);
+    }
   };
 
   return isCity ? (

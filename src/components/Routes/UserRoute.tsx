@@ -2,6 +2,8 @@ import React, { PropsWithChildren } from "react";
 import { useSelector } from "react-redux";
 
 import { Redirect, Route } from "react-router-dom";
+import { AppState } from "../../configureStore";
+import { UserState } from "../../redux/user/userState";
 
 export interface UserRouteProps extends PropsWithChildren<any> {}
 
@@ -9,9 +11,10 @@ const UserRoute: React.SFC<UserRouteProps> = ({
   component: Component,
   ...rest
 }) => {
-  const userData = useSelector((state: any) => state.userReducer);
-  const isUser = Object.keys(userData.user).length > 0;
-  console.log(isUser);
+  const userData = useSelector(
+    (state: AppState): UserState => state.userReducer
+  );
+  const isUser = userData.user.id.length > 0;
   return (
     <Route
       {...rest}

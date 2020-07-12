@@ -15,7 +15,7 @@ const Chart: React.SFC<any> = ({ preparedData }) => {
   const data: Array<Object> = preparedData;
   return (
     <ResponsiveContainer width="90%" height="80%" className="chart">
-      <LineChart data={data} margin={{ right: 30, bottom: 5 }}>
+      <LineChart data={data} margin={{ right: 40, bottom: 5 }}>
         <XAxis minTickGap={30} dataKey="name" />
         <YAxis type="number" domain={[0, 40]} />
         <CartesianGrid strokeDasharray="3 3" />

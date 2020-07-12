@@ -14,7 +14,7 @@ const Form: React.SFC<loginProps> = ({ history }) => {
   const userData = useSelector((state: any) => state.userReducer);
 
   useEffect(() => {
-    if (Object.keys(userData.user).length > 0) {
+    if (Object.keys(userData.user.id).length > 0) {
       history.push("/home");
     }
     if (userData.errorMessage.length !== 0) {

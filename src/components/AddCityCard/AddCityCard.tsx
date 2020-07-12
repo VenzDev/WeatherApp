@@ -3,8 +3,6 @@ import styled from "styled-components";
 import plus from "../../icons/plus.png";
 import AddCityModal from "./AddCityModal";
 
-export interface AddCityCardProps {}
-
 const Div = styled.div`
   transition: 0.2s;
   &:hover {
@@ -17,7 +15,7 @@ const Img = styled.img`
   margin: 0 auto;
 `;
 
-const AddCityCard: React.SFC<AddCityCardProps> = () => {
+const AddCityCard = () => {
   const [isModal, setModal] = useState(false);
   const toggleModal = () => setModal(!isModal);
 

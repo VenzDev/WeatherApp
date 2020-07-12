@@ -1,24 +1,32 @@
-import types from "./types";
+import {
+  GET_CITY_FAILED,
+  GET_CITY_SUCCESS,
+  GET_CITY_PENDING,
+  CLEAR_DATA,
+  SELECT_CITY,
+  CitiesActionTypes,
+} from "./types";
+import { City } from "./citiesState";
 
-const getCityPending = () => ({
-  type: types.GET_CITY_PENDING,
-  payload: true,
+const getCityPending = (): CitiesActionTypes => ({
+  type: GET_CITY_PENDING,
+  isLoading: true,
 });
-const getCitySuccess = (city: Object) => ({
-  type: types.GET_CITY_SUCCESS,
-  payload: city,
+const getCitySuccess = (city: City): CitiesActionTypes => ({
+  type: GET_CITY_SUCCESS,
+  city,
 });
-const getCityFailed = (errorMessage: String) => ({
-  type: types.GET_CITY_FAILED,
-  payload: errorMessage,
+const getCityFailed = (errorMessage: string): CitiesActionTypes => ({
+  type: GET_CITY_FAILED,
+  errorMessage,
 });
-const clearData = () => ({
-  type: types.CLEAR_DATA,
-  payload: true,
+const clearData = (): CitiesActionTypes => ({
+  type: CLEAR_DATA,
+  isLoading: true,
 });
-const selectCity = (city: Object) => ({
-  type: types.SELECT_CITY,
-  payload: city,
+const selectCity = (city: City): CitiesActionTypes => ({
+  type: SELECT_CITY,
+  city,
 });
 
 export default {

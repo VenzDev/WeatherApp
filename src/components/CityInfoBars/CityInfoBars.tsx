@@ -20,7 +20,7 @@ const InfoBar: React.SFC<InfoBarProps> = ({ temp, name }) => {
 
 const CityBarsInfo: React.SFC = () => {
   const { city } = useSelector((state: any) => state.selectedCityReducer);
-  const isCitySelected = Object.keys(city).length > 0;
+  const isCitySelected = city.id !== null;
   return isCitySelected ? (
     <>
       <h3 className="ml-4">

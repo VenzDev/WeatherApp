@@ -1,32 +1,44 @@
-import types from "./types";
+import {
+  LOGIN_PENDING,
+  LOGIN_SUCCESS,
+  LOGIN_FAILED,
+  LOGOUT,
+  UPDATE_PENDING,
+  UPDATE_FAILED,
+  UPDATE_SUCCESS,
+  UserActionTypes,
+} from "./types";
+import { User } from "./userState";
 
-interface user {
-  email: String;
-  password: String;
-  favCites: Array<String>;
-  id: String;
-}
-
-const loginPending = () => ({ type: types.LOGIN_PENDING, payload: true });
-const loginSuccess = (user: user) => ({
-  type: types.LOGIN_SUCCESS,
-  payload: user,
+const loginPending = (): UserActionTypes => ({
+  type: LOGIN_PENDING,
+  isLoading: true,
 });
-const loginFailed = (errorMessage: String) => ({
-  type: types.LOGIN_FAILED,
-  payload: errorMessage,
+const loginSuccess = (user: User): UserActionTypes => ({
+  type: LOGIN_SUCCESS,
+  user,
 });
-
-const logout = () => ({ type: types.LOGOUT, payload: false });
-
-const updatePending = () => ({ type: types.UPDATE_PENDING, payload: true });
-
-const updateSuccess = (citiesArray: Array<String>) => ({
-  type: types.UPDATE_SUCCESS,
-  payload: citiesArray,
+const loginFailed = (errorMessage: string): UserActionTypes => ({
+  type: LOGIN_FAILED,
+  errorMessage,
 });
 
-const updateFailed = () => ({ type: types.UPDATE_FAILED, payload: false });
+const logout = (): UserActionTypes => ({ type: LOGOUT, isLoading: false });
+
+const updatePending = (): UserActionTypes => ({
+  type: UPDATE_PENDING,
+  isLoading: false,
+});
+
+const updateSuccess = (favCities: Array<string>): UserActionTypes => ({
+  type: UPDATE_SUCCESS,
+  favCities,
+});
+
+const updateFailed = (): UserActionTypes => ({
+  type: UPDATE_FAILED,
+  isLoading: false,
+});
 
 export default {
   loginPending,

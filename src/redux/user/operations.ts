@@ -1,12 +1,16 @@
 import { login as loginMethod, updateUserCities } from "../../api/apiCalls";
 import actions from "./actions";
+import { Dispatch } from "react";
+import { UserActionTypes } from "./types";
 
 interface loginData {
-  email: String;
-  password: String;
+  email: string;
+  password: string;
 }
 
-const login = (data: loginData) => async (dispatch: any) => {
+const login = (data: loginData) => async (
+  dispatch: Dispatch<UserActionTypes>
+) => {
   try {
     dispatch(actions.loginPending());
     const users = await loginMethod(data);
@@ -34,12 +38,12 @@ const login = (data: loginData) => async (dispatch: any) => {
     if (err) return dispatch(actions.loginFailed("Invalid Credentials"));
   }
 };
-const logout = () => (dispatch: any) => {
+const logout = () => (dispatch: Dispatch<UserActionTypes>) => {
   dispatch(actions.logout());
 };
 
-const updateCities = (id: String, citiesArray: Array<String>) => async (
-  dispatch: any
+const updateCities = (id: string, citiesArray: Array<string>) => async (
+  dispatch: Dispatch<UserActionTypes>
 ) => {
   try {
     dispatch(actions.updatePending());

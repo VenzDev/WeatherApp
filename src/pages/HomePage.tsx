@@ -12,11 +12,11 @@ const HomePage: React.SFC = () => {
     //FIXED bug with login again!
     dispatch(cities.clearData());
 
-    favCities.forEach((id: String) => dispatch(cities.getCityMethod(id)));
+    favCities.forEach((id: string) => dispatch(cities.getCityMethod(id)));
 
     const interval = setInterval(() => {
       dispatch(cities.clearData());
-      favCities.forEach((id: String) => dispatch(cities.getCityMethod(id)));
+      favCities.forEach((id: string) => dispatch(cities.getCityMethod(id)));
     }, 1000 * 60);
 
     return () => clearInterval(interval);
