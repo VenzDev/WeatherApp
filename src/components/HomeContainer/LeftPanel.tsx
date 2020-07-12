@@ -19,7 +19,7 @@ interface city {
 const LeftPanel: React.SFC<LeftPanelProps> = () => {
   const citiesData = useSelector((state: State) => state.citiesReducer);
   return (
-    <div className="col-xl-8 bg-light">
+    <div className="col-xl-8 bg-light order-2 order-xl-1">
       <div className="row m-4">
         <h3>Weather Forecast</h3>
       </div>

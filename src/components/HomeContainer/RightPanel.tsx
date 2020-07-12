@@ -22,7 +22,7 @@ const RightPanel: React.SFC<RightPanelProps> = ({ history }) => {
   `;
 
   return (
-    <RightPanelContainer className="col-xl-4">
+    <RightPanelContainer className="col-xl-4 order-1 order-xl-2">
       <div
         style={{ color: "white" }}
         className="row  align-items-center justify-content-around p-4 my-4"
