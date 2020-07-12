@@ -37,6 +37,13 @@ const getCitiesByName = async (name: String) => {
   return fetchedData.data;
 };
 
+const getCityDataChart = async (id: String) => {
+  const fetchedData = await axios.get(
+    `http://api.openweathermap.org/data/2.5/forecast?id=${id}&appid=${weatherApiKey}`
+  );
+  return fetchedData.data;
+};
+
 const updateUserCities = async (id: String, citiesArray: Array<String>) => {
   const fetchedData = await axios.patch(updateUserUri + id + ".json", {
     favCities: citiesArray,
@@ -44,4 +51,11 @@ const updateUserCities = async (id: String, citiesArray: Array<String>) => {
   return fetchedData.data.favCities;
 };
 
-export { register, login, getCity, updateUserCities, getCitiesByName };
+export {
+  register,
+  login,
+  getCity,
+  updateUserCities,
+  getCitiesByName,
+  getCityDataChart,
+};

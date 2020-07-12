@@ -39,7 +39,7 @@ const AddCityModal: React.SFC<AddCityModalProps> = ({ toggleModal }) => {
   };
 
   return (
-    <Modal toggleModal={toggleModal}>
+    <Modal height={"60%"} width={"60%"} toggleModal={toggleModal}>
       <h5 className="py-3">Find your city</h5>
       <div className="input-group mb-3">
         <div className="input-group-prepend">
@@ -49,7 +49,7 @@ const AddCityModal: React.SFC<AddCityModalProps> = ({ toggleModal }) => {
           onChange={handleInput}
           type="text"
           className="form-control"
-          placeholder="Rzeszów"
+          placeholder="Warsaw"
         />
       </div>
       <div className="row">

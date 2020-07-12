@@ -27,7 +27,7 @@ function App() {
         <Suspense
           fallback={
             <LoadingDiv>
-              <LoadingSpinner />
+              <LoadingSpinner border="6px solid #fff" />
             </LoadingDiv>
           }
         >

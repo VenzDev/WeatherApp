@@ -21,14 +21,19 @@ const Spinner = styled.div`
     height: 64px;
     margin: 8px;
     border-radius: 50%;
-    border: 6px solid #fff;
+    border: ${(props: StyledProps) => props.border};
     border-color: #fff transparent #fff transparent;
     animation: ${rotate} 1.2s linear infinite;
   }
 `;
-
-const LoadingSpinner: React.SFC = () => {
-  return <Spinner />;
+export interface Props {
+  border: string;
+}
+interface StyledProps {
+  border: string;
+}
+const LoadingSpinner: React.SFC<Props> = ({ border }) => {
+  return <Spinner border={border} />;
 };
 
 export default LoadingSpinner;

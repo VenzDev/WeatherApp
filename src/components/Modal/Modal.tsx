@@ -1,6 +1,11 @@
 import React from "react";
 import styled from "styled-components";
 
+export interface Props {
+  width: string;
+  height: string;
+}
+
 const ModalBackground = styled.div`
   top: 0;
   left: 0;
@@ -12,8 +17,8 @@ const ModalBackground = styled.div`
 `;
 
 const ModalContainer = styled.div`
-  width: 60%;
-  height: 70%;
+  width: ${(props: Props) => props.width};
+  height: ${(props: Props) => props.height};
   top: 50%;
   left: 50%;
   border-radius: 26px;
@@ -34,12 +39,19 @@ const CloseButton = styled.button`
 
 export interface ModalProps {
   toggleModal: Function;
+  width: string;
+  height: string;
 }
 
-const Modal: React.SFC<ModalProps> = ({ children, toggleModal }) => {
+const Modal: React.SFC<ModalProps> = ({
+  children,
+  toggleModal,
+  width,
+  height,
+}) => {
   return (
     <ModalBackground>
-      <ModalContainer>
+      <ModalContainer width={width} height={height}>
         <CloseButton onClick={() => toggleModal()} className="btn btn-primary">
           Close
         </CloseButton>
