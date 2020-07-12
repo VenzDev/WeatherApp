@@ -1,3 +1,3 @@
 # Demo Weather App
 
-## Live preview: https://silly-swirles-a1817e.netlify.app
+## Live preview: https://objective-hermann-adbb47.netlify.app
