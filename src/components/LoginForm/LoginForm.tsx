@@ -4,6 +4,8 @@ import { withRouter } from "react-router-dom";
 import { user } from "../../redux/user";
 import { Link, RouteComponentProps } from "react-router-dom";
 import { Button, Input, StyledLink } from "../FormContainer/Form.styled";
+import { AppState } from "../../configureStore";
+import { UserState } from "../../redux/user/userState";
 
 interface loginProps extends RouteComponentProps<any> {}
 
@@ -11,10 +13,12 @@ const Form: React.SFC<loginProps> = ({ history }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-  const userData = useSelector((state: any) => state.userReducer);
+  const userData = useSelector(
+    (state: AppState): UserState => state.userReducer
+  );
 
   useEffect(() => {
-    if (Object.keys(userData.user.id).length > 0) {
+    if (userData.user.id.length > 0) {
       history.push("/home");
     }
     if (userData.errorMessage.length !== 0) {

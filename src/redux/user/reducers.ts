@@ -30,12 +30,7 @@ const userReducer = (state = initState, action: UserActionTypes) => {
     case LOGIN_SUCCESS:
       return { ...state, user: action.user, isLoading: false };
     case LOGIN_FAILED:
-      return {
-        ...state,
-        user: {},
-        isLoading: false,
-        errorMessage: action.errorMessage,
-      };
+      return { ...initState, errorMessage: action.errorMessage };
     case LOGOUT:
       return initState;
     case UPDATE_PENDING:
