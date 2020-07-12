@@ -33,6 +33,10 @@ const RegisterForm: React.SFC<RegisterProps> = ({ history }) => {
       setErrorMessage("Inputs cannot be empty");
       return;
     }
+    if (!validatePassword(password)) {
+      setErrorMessage("Password must be at least 6 characters long");
+      return;
+    }
     setLoading(true);
     register({ name, surname, email, password }).then((res) => {
       setLoading(false);
@@ -127,6 +131,11 @@ function validateInputs(data: inputs) {
     return false;
   }
   return true;
+}
+//BASIC VALIDATE
+function validatePassword(password: string) {
+  if (password.trim().length >= 6) return true;
+  return false;
 }
 
 export default withRouter(RegisterForm);
