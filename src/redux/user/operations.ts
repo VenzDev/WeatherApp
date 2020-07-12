@@ -20,7 +20,6 @@ const login = (data: loginData) => async (
           users[key].email === data.email &&
           users[key].password === data.password
         ) {
-          console.log(key);
           if (!users[key].hasOwnProperty("favCities"))
             //Firebase hack
             return dispatch(

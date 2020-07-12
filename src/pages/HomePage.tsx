@@ -9,7 +9,6 @@ const HomePage: React.SFC = () => {
   const { favCities } = userData.user;
 
   useEffect(() => {
-    //FIXED bug with login again!
     dispatch(cities.clearData());
 
     favCities.forEach((id: string) => dispatch(cities.getCityMethod(id)));
